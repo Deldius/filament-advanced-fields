@@ -10,13 +10,30 @@ class ImageGallerySliderEntry extends Entry
     protected string $view = 'filament-advanced-fields::image-gallery-slider-entry';
 
     protected string $height = '240px';
+
     protected string $width = '100%';
+
+    protected ?ImageEntry $imageEntryInstance = null;
+
+    public function imageEntryInstance(ImageEntry $imageEntry): void
+    {
+        $this->imageEntryInstance = $imageEntry;
+    }
+
+    public function getImageEntryInstance(): ImageEntry
+    {
+        if ($this->imageEntryInstance === null) {
+            $this->imageEntryInstance = new ImageEntry('tmp');
+        }
+
+        return $this->imageEntryInstance;
+    }
 
     public function getImages(): array
     {
         $images = $this->getRecord()->getAttribute($this->getName());
 
-        if (!$images) {
+        if (! $images) {
             return [];
         }
 
@@ -24,7 +41,7 @@ class ImageGallerySliderEntry extends Entry
             $images = [$images];
         }
 
-        $imageEntryInstance = new ImageEntry('tmp');
+        $imageEntryInstance = $this->getImageEntryInstance();
 
         array_walk($images, function (&$image) use ($imageEntryInstance) {
             $image = $imageEntryInstance->getImageUrl($image);
