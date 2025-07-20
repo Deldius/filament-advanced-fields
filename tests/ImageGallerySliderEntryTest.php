@@ -1,8 +1,8 @@
 <?php
 
 use Deldius\AdvancedFields\ImageGallerySliderEntry;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Infolists\Components\ImageEntry;
+use Illuminate\Database\Eloquent\Model;
 
 class StubModel extends Model
 {
@@ -11,6 +11,7 @@ class StubModel extends Model
         parent::__construct();
         $this->attributes = $attributes;
     }
+
     public function getAttribute($name)
     {
         return $this->attributes[$name] ?? null;
@@ -20,7 +21,8 @@ class StubModel extends Model
 class TestImageGallerySliderEntry extends ImageGallerySliderEntry
 {
     public $testRecord;
-    public function getRecord(bool $withContainerRecord = true): \Illuminate\Database\Eloquent\Model|array|null
+
+    public function getRecord(bool $withContainerRecord = true): \Illuminate\Database\Eloquent\Model | array | null
     {
         return $this->testRecord;
     }
@@ -40,7 +42,7 @@ describe('ImageGallerySliderEntry', function () {
         $entry->testRecord = $record;
 
         $mockImageEntry = \Mockery::mock(ImageEntry::class);
-        $mockImageEntry->shouldReceive('getImageUrl')->andReturnUsing(fn($img) => 'url/' . $img);
+        $mockImageEntry->shouldReceive('getImageUrl')->andReturnUsing(fn ($img) => 'url/' . $img);
         $entry->imageEntryInstance($mockImageEntry);
 
         $images = $entry->getImages();
@@ -53,7 +55,7 @@ describe('ImageGallerySliderEntry', function () {
         $entry->testRecord = $record;
 
         $mockImageEntry = \Mockery::mock(ImageEntry::class);
-        $mockImageEntry->shouldReceive('getImageUrl')->andReturnUsing(fn($img) => 'url/' . $img);
+        $mockImageEntry->shouldReceive('getImageUrl')->andReturnUsing(fn ($img) => 'url/' . $img);
         $entry->imageEntryInstance($mockImageEntry);
 
         $images = $entry->getImages();
