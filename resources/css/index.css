@@ -1,1 +1,37 @@
-@import '../../vendor/filament/filament/resources/css/theme.css';
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.fi-image-gallery-slider {
+  @apply w-full mx-auto flex flex-col items-center;
+}
+.fi-image-gallery-slider .slider-wrapper {
+  @apply w-full flex justify-center items-center overflow-hidden mb-3 relative;
+}
+.fi-image-gallery-slider .slider-image {
+  @apply max-w-full rounded-md shadow-md block mx-auto;
+}
+.fi-image-gallery-slider .slider-controls {
+  @apply absolute left-1 right-1 items-center justify-between hidden group-hover:flex;
+}
+.fi-image-gallery-slider .slider-btn {
+  @apply bg-gray-100 hover:bg-gray-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 border-none p-2 rounded cursor-pointer transition-colors;
+}
+.fi-image-gallery-slider .slider-thumbnails {
+  @apply flex flex-wrap gap-1 justify-start;
+}
+.fi-image-gallery-slider .slider-thumb {
+  @apply size-10 object-cover rounded cursor-pointer opacity-70 border-2 border-transparent transition-all duration-200;
+}
+.fi-image-gallery-slider .slider-thumb.active-thumb {
+  @apply opacity-100 border-white dark:border-neutral-300;
+}
+.fi-image-gallery-slider .slider-empty-state {
+  @apply w-full min-h-[180px] flex flex-col items-center justify-center gap-2 
+       text-gray-500 bg-gray-50 dark:bg-neutral-900 dark:text-gray-300 
+         rounded-lg border border-dashed border-gray-300 dark:border-neutral-600 
+         m-2 p-8;
+}
+.fi-image-gallery-slider .slider-empty-text {
+  @apply text-center text-sm;
+}

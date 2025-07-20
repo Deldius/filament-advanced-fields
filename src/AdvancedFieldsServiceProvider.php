@@ -39,17 +39,17 @@ class AdvancedFieldsServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // FilamentAsset::register(
-        //     [
-        //         Css::make(
-        //             'filament-advanced-fields',
-        //             __DIR__ . '/../resources/dist/filament-advanced-fields.css'
-        //         )
-        //         // ->loadedOnRequest()
-        //         ,
-        //     ],
-        //     $this->getAssetPackageName()
-        // );
+        FilamentAsset::register(
+            [
+                Css::make(
+                    'filament-advanced-fields',
+                    __DIR__ . '/../resources/dist/filament-advanced-fields.css'
+                )
+                // ->loadedOnRequest()
+                ,
+            ],
+            $this->getAssetPackageName()
+        );
     }
 
     protected function getAssetPackageName(): ?string
